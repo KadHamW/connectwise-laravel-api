@@ -1,0 +1,24 @@
+{
+    "name": "kadhamw/connectapi",
+    "description": "This is a dev application for connecting to the CW API",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Kade Hampson",
+            "email": "kadehampson@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Kadhamw\\ConnectAPI\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Kadhamw\\ConnectAPI\\ConnectAPIServiceProvider"
+            ]
+        }
+    },
+    "require": {}
+}
