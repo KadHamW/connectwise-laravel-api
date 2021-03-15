@@ -4,6 +4,8 @@ namespace Kadhamw\ConnectAPI;
 
 use PHPUnit\Framework\Exception;
 
+use function PHPUnit\Framework\isEmpty;
+
 class Connection
 {
 
@@ -22,14 +24,23 @@ class Connection
         $this->username = $this->companyID .'+'. $this->pubk;
     }
 
-    public function request(String $query){
-        $curl = curl_init();
-        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
-        curl_setopt($curl, CURLOPT_URL, "https://api-aus.myconnectwise.net/v2020_4/apis/3.0/".$query);
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1 );
+    public function request(String $query, $a_data = []){
+        $url = "https://api-aus.myconnectwise.net/v2020_4/apis/3.0/".$query;
         $headers = array();
         $headers[] = 'Authorization: Basic '.base64_encode($this->username.":".$this->prik);
         $headers[] = 'ClientId: '.$this->clientID;
+        $curl = curl_init();
+        if (!empty($a_data)){
+            $payload = http_build_query($a_data);
+            curl_setopt($curl, CURLOPT_POST, true);
+            curl_setopt($curl, CURLOPT_POSTFIELDS, $payload);
+            dump($payload);
+            $headers[] = 'Content-Type: application/json';
+            $headers[] = 'Content-Length: ' . strlen($payload);
+        }
+        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
+        curl_setopt($curl, CURLOPT_URL, $url);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1 );
         curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
         $result = curl_exec($curl);
         if ($result === false) {
