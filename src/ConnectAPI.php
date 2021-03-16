@@ -9,6 +9,7 @@ use Kadhamw\ConnectAPI\API\Contact;
 class ConnectAPI
 {
     public function test(){
-        return Contact::getContacts();
+        $contacts = Contact::getContacts();
+        return Contact::getEmail($contacts[0]);
     }
 }
