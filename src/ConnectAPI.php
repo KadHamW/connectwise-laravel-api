@@ -9,7 +9,6 @@ use Kadhamw\ConnectAPI\API\Contact;
 class ConnectAPI
 {
     public function test(){
-        $contacts = Contact::getContacts();
-        return Contact::getEmail($contacts[0]);
+        return Opportunity::postOpportunity('Test', 'khampson', '19563', '591');
     }
 }

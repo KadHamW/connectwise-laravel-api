@@ -31,10 +31,9 @@ class Connection
         $headers[] = 'ClientId: '.$this->clientID;
         $curl = curl_init();
         if (!empty($a_data)){
-            $payload = http_build_query($a_data);
+            $payload = json_encode($a_data);
             curl_setopt($curl, CURLOPT_POST, true);
             curl_setopt($curl, CURLOPT_POSTFIELDS, $payload);
-            dump($payload);
             $headers[] = 'Content-Type: application/json';
             $headers[] = 'Content-Length: ' . strlen($payload);
         }

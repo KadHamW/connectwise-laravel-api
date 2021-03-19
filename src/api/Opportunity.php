@@ -6,13 +6,23 @@ use Kadhamw\ConnectAPI\Connection;
 
 class Opportunity
 {
-    public static function postOpportunity($name){
+    public static function postOpportunity($name, $primarySalesRepIdent, $companyID, $contactID){
         $conn = new Connection();
         $data = [
             'name' => $name,
+            'primarySalesRep' => [
+                'identifier' => $primarySalesRepIdent
+            ],
+            'company' => [
+                'id' => $companyID
+            ],
+            'contact' => [
+                'id' => $contactID
+            ],
         ];
-        $result = $conn->request('​sales​/opportunities', $data);
-        dd($result);
+
+        $result = $conn->request('sales/opportunities', $data);
+        return json_decode($result)->id;
     }
 
     public static function getOpportunitiesCount(){
