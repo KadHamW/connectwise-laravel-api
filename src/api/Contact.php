@@ -28,7 +28,7 @@ class Contact
     }
 
     public static function getEmail($contact){
-        if ($contact->communicationItems){
+        if (isset($contact->communicationItems)){
             foreach ($contact->communicationItems as $commItem) {
                 if ($commItem->communicationType == "Email"){
                     return $commItem->value;
