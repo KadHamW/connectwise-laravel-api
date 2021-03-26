@@ -24,7 +24,7 @@ class Connection
         $this->username = $this->companyID .'+'. $this->pubk;
     }
 
-    public function request(String $query, $a_data = []){
+    public function request(String $query, $a_data = [], $method = ""){
         $url = "https://api-aus.myconnectwise.net/v2020_4/apis/3.0/".$query;
         $headers = array();
         $headers[] = 'Authorization: Basic '.base64_encode($this->username.":".$this->prik);
@@ -36,6 +36,9 @@ class Connection
             curl_setopt($curl, CURLOPT_POSTFIELDS, $payload);
             $headers[] = 'Content-Type: application/json';
             $headers[] = 'Content-Length: ' . strlen($payload);
+            if($method){
+                curl_setopt($curl, CURLOPT_CUSTOMREQUEST, $method);
+            }
         }
         curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
         curl_setopt($curl, CURLOPT_URL, $url);
