@@ -4,25 +4,27 @@ namespace Kadhamw\ConnectAPI\API;
 
 use Kadhamw\ConnectAPI\Connection;
 
-class Product
+use Kadhamw\ConnectAPI\Models\Product;
+
+class ProductFactory
 {
-    public static function postProduct(int $catalog_cwid, string $customer_desc, int $quantity, int $price, int $cost, int $opp_cwid, int $locationID, int $businessUnitId, string $description = ""){
+    public static function postProduct(Product $product){
         $conn = new Connection();
         $data = [
             "catalogItem" => [
-                "id" => $catalog_cwid,
+                "id" => $product->catalog_cwid,
             ],
-            "description" => $description,
-            "quantity" => $quantity,
-            "price" => $price,
-            "cost" => $cost,
-            "customerDescription" => $customer_desc,
+            "description" => $product->description,
+            "quantity" => $product->quantity,
+            "price" => $product->price,
+            "cost" => $product->cost,
+            "customerDescription" => $product->customer_desc,
             "billableOption" => "Billable",
             "opportunity" => [
-                "id" => $opp_cwid,
+                "id" => $product->opp_cwid,
             ],
-            "locationId" => $locationID,
-            "businessUnitId" => $businessUnitId,
+            "locationId" => $product->locationID,
+            "businessUnitId" => $product->businessUnitId,
         ];
 
         $result = json_decode($conn->request('procurement/products', $data));
@@ -36,7 +38,7 @@ class Product
     }
 
     public static function getProducts(){
-        $count = Product::getProductsCount();
+        $count = ProductFactory::getProductsCount();
         $pages = (int)ceil($count / 100);
         $_products = [];
         for ($i=1; $i <= $pages; $i++) {

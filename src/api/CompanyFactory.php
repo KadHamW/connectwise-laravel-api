@@ -4,7 +4,7 @@ namespace Kadhamw\ConnectAPI\API;
 
 use Kadhamw\ConnectAPI\Connection;
 
-class Company
+class CompanyFactory
 {
     public static function getCompaniesCount(){
         $conn = new Connection();
@@ -13,7 +13,7 @@ class Company
     }
 
     public static function getCompanies(){
-        $count = Company::getCompaniesCount();
+        $count = CompanyFactory::getCompaniesCount();
         $pages = (int)ceil($count / 100);
         $_companies = [];
         for ($i=1; $i <= $pages; $i++) {

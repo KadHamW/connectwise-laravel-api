@@ -4,7 +4,7 @@ namespace Kadhamw\ConnectAPI\API;
 
 use Kadhamw\ConnectAPI\Connection;
 
-class Contact
+class ContactFactory
 {
     public static function getContactCount(){
         $conn = new Connection();
@@ -13,7 +13,7 @@ class Contact
     }
 
     public static function getContacts(){
-        $count = Contact::getContactCount();
+        $count = ContactFactory::getContactCount();
         $pages = (int)ceil($count / 100);
         $tmp_contacts = [];
         for ($i=1; $i <= $pages; $i++) {
