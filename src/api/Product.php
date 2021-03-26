@@ -6,7 +6,7 @@ use Kadhamw\ConnectAPI\Connection;
 
 class Product
 {
-    public static function postProduct(int $catalog_cwid, string $customer_desc, int $quantity, int $price, int $cost, int $opp_cwid, string $description = ""){
+    public static function postProduct(int $catalog_cwid, string $customer_desc, int $quantity, int $price, int $cost, int $opp_cwid, int $locationID, int $businessUnitId, string $description = ""){
         $conn = new Connection();
         $data = [
             "catalogItem" => [
@@ -21,12 +21,12 @@ class Product
             "opportunity" => [
                 "id" => $opp_cwid,
             ],
-            "locationId" => 11,
-            "businessUnitId" => 1,
+            "locationId" => $locationID,
+            "businessUnitId" => $businessUnitId,
         ];
 
         $result = json_decode($conn->request('procurement/products', $data));
-        dd($result);
+        return $result;
     }
 
     public static function getProductsCount(){
@@ -50,7 +50,7 @@ class Product
         return $_products;
     }
 
-    public static function putProduct(int $product_cwid, string $customer_desc, int $quantity, int $price, int $cost, int $opp_cwid, string $description = ""){
+    public static function putProduct(int $product_cwid, string $customer_desc, int $quantity, int $price, int $cost, int $opp_cwid, int $locationID, int $businessUnitId, string $description = ""){
         $conn = new Connection();
         $data = [
             "description" => $description,
@@ -62,8 +62,8 @@ class Product
             "opportunity" => [
                 "id" => $opp_cwid,
             ],
-            "locationId" => 11,
-            "businessUnitId" => 1,
+            "locationId" => $locationID,
+            "businessUnitId" => $businessUnitId,
         ];
 
         $result = $conn->request('procurement/products/'.$product_cwid, $data, "PUT");
