@@ -71,4 +71,10 @@ class ProductFactory
         $result = $conn->request('procurement/products/'.$product_cwid, $data, "PUT");
         dd($result);
     }
+
+    public static function deleteProduct($product_id) {
+        $conn = new Connection();
+        $result = json_decode($conn->request('procurement/products/'.$product_id, [], "DELETE"));
+        if (is_null($result)) {return true;} else { return false;}
+    }
 }

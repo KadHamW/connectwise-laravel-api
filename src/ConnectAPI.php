@@ -15,9 +15,9 @@ class ConnectAPI
         //return LocationFactory::getLocations();
         // $product = new Product();
 
-
+        return ProductFactory::deleteProduct(6715);
         // 52, "Test Description", 1, 900, 150, 652
-        $product = new Product(53,'TEST',1,90.20,123,673,11,1);
-        return ProductFactory::postProduct($product);
+        // $product = new Product(53,'TEST',1,90.20,123,673,11,1);
+        // return ProductFactory::postProduct($product);
     }
 }

@@ -36,9 +36,9 @@ class Connection
             curl_setopt($curl, CURLOPT_POSTFIELDS, $payload);
             $headers[] = 'Content-Type: application/json';
             $headers[] = 'Content-Length: ' . strlen($payload);
-            if($method){
-                curl_setopt($curl, CURLOPT_CUSTOMREQUEST, $method);
-            }
+        }
+        if($method){
+            curl_setopt($curl, CURLOPT_CUSTOMREQUEST, $method);
         }
         curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
         curl_setopt($curl, CURLOPT_URL, $url);
