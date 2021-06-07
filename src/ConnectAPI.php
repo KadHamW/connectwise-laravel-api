@@ -14,7 +14,7 @@ use Kadhamw\ConnectAPI\API\CompanyFactory;
 class ConnectAPI
 {
     public function test(){
-        return CompanyFactory::getCompanies();
+        return CompanyFactory::getCompanies()[0];
         //return LocationFactory::getLocations();
         // $product = new Product();
 

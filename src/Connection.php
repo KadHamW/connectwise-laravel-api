@@ -5,6 +5,7 @@ namespace Kadhamw\ConnectAPI;
 use PHPUnit\Framework\Exception;
 
 use function PHPUnit\Framework\isEmpty;
+use Illuminate\Support\Facades\Log;
 
 class Connection
 {
@@ -49,6 +50,7 @@ class Connection
             throw new Exception(curl_error($curl), curl_errno($curl));
         }
         curl_close($curl);
+        Log::debug("Result: " . $result);
         return $result;
     }
 }
