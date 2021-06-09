@@ -3,7 +3,7 @@
 namespace Kadhamw\ConnectAPI;
 
 use Kadhamw\ConnectAPI\API\Company;
-use Kadhamw\ConnectAPI\API\Opportunity;
+use Kadhamw\ConnectAPI\API\OpportunityFactory;
 use Kadhamw\ConnectAPI\API\Contact;
 use Kadhamw\ConnectAPI\API\ProductFactory;
 use Kadhamw\ConnectAPI\Models\Product;
@@ -14,7 +14,13 @@ use Kadhamw\ConnectAPI\API\CompanyFactory;
 class ConnectAPI
 {
     public function test(){
-        return CompanyFactory::getCompanies()[0];
+        $oppID = OpportunityFactory::postOpportunity('Quoter:TEST',
+            "khampson",
+            19966,
+            1245
+        );
+        dd($oppID);
+        //return CompanyFactory::getCompanies()[0];
         //return LocationFactory::getLocations();
         // $product = new Product();
 

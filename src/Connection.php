@@ -26,7 +26,7 @@ class Connection
     }
 
     public function request(String $query, $a_data = [], $method = ""){
-        $url = "https://api-aus.myconnectwise.net/v2020_4/apis/3.0/".$query;
+        $url = "https://api-aus.myconnectwise.net/v2021_1/apis/3.0/".$query;
         $headers = array();
         $headers[] = 'Authorization: Basic '.base64_encode($this->username.":".$this->prik);
         $headers[] = 'ClientId: '.$this->clientID;
