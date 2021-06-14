@@ -10,16 +10,18 @@ use Kadhamw\ConnectAPI\Models\Product;
 use Kadhamw\ConnectAPI\API\LocationFactory;
 use Kadhamw\ConnectAPI\API\MemberFactory;
 use Kadhamw\ConnectAPI\API\CompanyFactory;
+use Kadhamw\ConnectAPI\API\TicketFactory;
 
 class ConnectAPI
 {
     public function test(){
-        $oppID = OpportunityFactory::postOpportunity('Quoter:TEST',
-            "khampson",
-            19966,
-            1245
-        );
-        dd($oppID);
+        return TicketFactory::getTicketCount();
+        // $oppID = OpportunityFactory::postOpportunity('Quoter:TEST',
+        //     "khampson",
+        //     19966,
+        //     1245
+        // );
+        // dd($oppID);
         //return CompanyFactory::getCompanies()[0];
         //return LocationFactory::getLocations();
         // $product = new Product();

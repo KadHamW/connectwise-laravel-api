@@ -45,12 +45,18 @@ class Connection
         curl_setopt($curl, CURLOPT_URL, $url);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1 );
         curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+
+        if (config('CWDEBUG'))
+        {
+            Log::debug("Request: URL: " . $url . '. Headers: ' . implode(',', $headers) . '. Data: ' . implode(',', $a_data));
+        }
+
         $result = curl_exec($curl);
         if ($result === false) {
             throw new Exception(curl_error($curl), curl_errno($curl));
         }
         curl_close($curl);
-        Log::debug("Result: " . $result);
+        if (config('CWDEBUG')){ Log::debug("Result: " . $result); }
         return $result;
     }
 }
