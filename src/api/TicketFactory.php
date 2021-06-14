@@ -2,6 +2,7 @@
 
 namespace Kadhamw\ConnectAPI\API;
 
+use Kadhamw\ConnectAPI\API\TicketFactory as APITicketFactory;
 use Kadhamw\ConnectAPI\Connection;
 
 class TicketFactory
@@ -32,5 +33,19 @@ class TicketFactory
         $conn = new Connection();
         $result = $conn->request('/service/tickets/count');
         return json_decode($result)->count;
+    }
+
+    public static function getTickets(){
+        $count = TicketFactory::getTicketCount();
+        $pages = (int)ceil($count / 100);
+        $_tickets = [];
+        for ($i=1; $i <= $pages; $i++) {
+            $conn = new Connection();
+            $result = $conn->request('service/tickets/?pagesize=100&page='.$i);
+            $tmp_tickets = json_decode($result);
+            $_tickets[] = $tmp_tickets;
+        }
+
+        return $_tickets;
     }
 }
