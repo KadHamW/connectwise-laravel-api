@@ -56,7 +56,7 @@ class ProductFactory
         $conn = new Connection();
         $data = [
             "catalogItem" => [
-                "id" => $product->catalogItem,
+                "id" => $product->catalog_cwid,
             ],
             "description" => $product->description,
             "quantity" => $product->quantity,
