@@ -52,26 +52,26 @@ class ProductFactory
         return $_products;
     }
 
-    public static function putProduct(int $product_cwid, int $catalogItem, int $opp_cwid, string $customer_desc, int $quantity, int $price, int $cost, int $locationID, int $businessUnitId, string $description){
+    public static function putProduct(Product $product){
         $conn = new Connection();
         $data = [
             "catalogItem" => [
-                "id" => $catalogItem,
+                "id" => $product->catalogItem,
             ],
-            "description" => $description,
-            "quantity" => $quantity,
-            "price" => $price,
-            "cost" => $cost,
-            "customerDescription" => $customer_desc,
+            "description" => $product->description,
+            "quantity" => $product->quantity,
+            "price" => $product->price,
+            "cost" => $product->cost,
+            "customerDescription" => $product->customer_desc,
             "billableOption" => "Billable",
             "opportunity" => [
-                "id" => $opp_cwid,
+                "id" => $product->opp_cwid,
             ],
-            "locationId" => $locationID,
-            "businessUnitId" => $businessUnitId,
+            "locationId" => $product->locationID,
+            "businessUnitId" => $product->businessUnitId,
         ];
 
-        $result = json_decode($conn->request('procurement/products/'.$product_cwid, $data, "PUT"));
+        $result = json_decode($conn->request('procurement/products/'.$product->product_cwid, $data, "PUT"));
         return($result);
     }
 
