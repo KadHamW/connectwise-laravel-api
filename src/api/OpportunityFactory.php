@@ -9,7 +9,7 @@ class OpportunityFactory
     /***
      * @return ID
      */
-    public static function postOpportunity(string $name, string $primarySalesRepIdent, int $companyID, int $contactID){
+    public static function postOpportunity(string $name, string $primarySalesRepIdent, int $companyID, int $contactID, int $locationId){
         $conn = new Connection();
         $data = [
             'name' => $name,
@@ -22,6 +22,8 @@ class OpportunityFactory
             'contact' => [
                 'id' => $contactID
             ],
+            'locationId' => $locationId,
+            'businessUnitId' => 1,
         ];
 
         $result = $conn->request('sales/opportunities', $data);
