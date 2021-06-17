@@ -25,6 +25,7 @@ class ProductFactory
             ],
             "locationId" => $product->locationID,
             "businessUnitId" => $product->businessUnitId,
+            "sequenceNumber" => $product->sequenceNumber,
         ];
 
         $result = json_decode($conn->request('procurement/products', $data));
@@ -69,6 +70,7 @@ class ProductFactory
             ],
             "locationId" => $product->locationID,
             "businessUnitId" => $product->businessUnitId,
+            "sequenceNumber" => $product->sequenceNumber,
         ];
 
         $result = json_decode($conn->request('procurement/products/'.$product->product_cwid, $data, "PUT"));
