@@ -15,7 +15,7 @@ use Kadhamw\ConnectAPI\API\TicketFactory;
 class ConnectAPI
 {
     public function test(){
-        return TicketFactory::getTickets();
+        dd(LocationFactory::getLocations());
         // $oppID = OpportunityFactory::postOpportunity('Quoter:TEST',
         //     "khampson",
         //     19966,
