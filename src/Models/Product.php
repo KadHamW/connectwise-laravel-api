@@ -19,7 +19,7 @@ class Product
 
     private $required = ['catalog_cwid', 'customer_desc', 'quantity', 'price', 'cost', 'opp_cwid', 'locationID', 'businessUnitId'];
 
-    public function __construct(int $catalog_cwid, string $customer_desc, int $quantity, float $price, float $cost, int $opp_cwid, int $locationID, int $businessUnitId, int $sequenceNumber)
+    public function __construct(int $catalog_cwid, string $customer_desc, int $quantity, float $price, float $cost, int $opp_cwid, int $locationID, int $businessUnitId, int $sequenceNumber = 1)
     {
         $this->catalog_cwid = $catalog_cwid;
         $this->customer_desc = $customer_desc;
