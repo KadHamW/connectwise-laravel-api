@@ -25,8 +25,24 @@ class Connection
         $this->username = $this->companyID .'+'. $this->pubk;
     }
 
+    public function version(){
+        $url = "https://api-aus.myconnectwise.net/login/companyinfo/".$this->companyID;
+        $headers = array();
+        $headers[] = 'Authorization: Basic '.base64_encode($this->username.":".$this->prik);
+        $headers[] = 'ClientId: '.$this->clientID;
+        $curl = curl_init();
+        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
+        curl_setopt($curl, CURLOPT_URL, $url);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1 );
+        curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+
+        $result = json_decode(curl_exec($curl));
+
+        return $result->Codebase;
+    }
+
     public function request(String $query, $a_data = [], $method = ""){
-        $url = "https://api-aus.myconnectwise.net/v2021_1/apis/3.0/".$query;
+        $url = "https://api-aus.myconnectwise.net/".$this->version()."apis/3.0/".$query;
         $headers = array();
         $headers[] = 'Authorization: Basic '.base64_encode($this->username.":".$this->prik);
         $headers[] = 'ClientId: '.$this->clientID;
@@ -52,6 +68,7 @@ class Connection
         }
 
         $result = curl_exec($curl);
+
         if ($result === false) {
             throw new Exception(curl_error($curl), curl_errno($curl));
         }

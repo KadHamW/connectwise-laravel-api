@@ -36,16 +36,14 @@ class OpportunityFactory
         return json_decode($result)->count;
     }
 
-    public static function updateStatus(int $oppID, string $name, int $statusID){
+    public static function updateStatus(int $oppID, int $statusID){
         $conn = new Connection();
         $data = [
-            'id' => $oppID,
-            'name' => $name,
             'status' => [
                 'id' => $statusID,
             ],
         ];
-        $result = $conn->request('sales/opportunities',$data,'PATCH');
+        $result = $conn->request('sales/opportunities/'.$oppID,$data,'PATCH');
         return json_decode($result);
     }
 

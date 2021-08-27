@@ -11,17 +11,21 @@ use Kadhamw\ConnectAPI\API\LocationFactory;
 use Kadhamw\ConnectAPI\API\MemberFactory;
 use Kadhamw\ConnectAPI\API\CompanyFactory;
 use Kadhamw\ConnectAPI\API\TicketFactory;
+use Kadhamw\ConnectAPI\Connection;
 
 class ConnectAPI
 {
     public function test(){
-        dd(OpportunityFactory::getStatuses());
-        // $oppID = OpportunityFactory::postOpportunity('Quoter:TEST',
-        //     "khampson",
-        //     19966,
-        //     1245
-        // );
-        // dd($oppID);
+        // $conn = new Connection;
+        // $conn->version();
+        // dd(OpportunityFactory::getStatuses());
+        $oppID = OpportunityFactory::postOpportunity('Quoter:TEST',
+            "khampson",
+            19966,
+            1245,
+            11
+        );
+        dd($oppID);
         //return CompanyFactory::getCompanies()[0];
         //return LocationFactory::getLocations();
         // $product = new Product();
