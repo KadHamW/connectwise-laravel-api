@@ -15,11 +15,12 @@ class Product
     public $locationID;
     public $businessUnitId;
     public $description = "";
+    public $product_cwid;
     public $sequenceNumber;
 
     private $required = ['catalog_cwid', 'customer_desc', 'quantity', 'price', 'cost', 'opp_cwid', 'locationID', 'businessUnitId'];
 
-    public function __construct(int $catalog_cwid, string $customer_desc, int $quantity, float $price, float $cost, int $opp_cwid, int $locationID, int $businessUnitId, int $sequenceNumber = 1)
+    public function __construct(int $catalog_cwid, string $customer_desc, int $quantity, float $price, float $cost, int $opp_cwid, int $locationID, int $businessUnitId, int $product_cwid, int $sequenceNumber = 1)
     {
         $this->catalog_cwid = $catalog_cwid;
         $this->customer_desc = $customer_desc;
@@ -29,6 +30,7 @@ class Product
         $this->opp_cwid = $opp_cwid;
         $this->locationID = $locationID;
         $this->businessUnitId = $businessUnitId;
+        $this->product_cwid = $product_cwid;
         $this->sequenceNumber = $sequenceNumber;
     }
 }
