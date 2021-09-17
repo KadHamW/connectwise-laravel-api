@@ -31,6 +31,5 @@ class Product
         $this->locationID = $locationID;
         $this->businessUnitId = $businessUnitId;
         $this->product_cwid = $product_cwid;
-        $this->sequenceNumber = $sequenceNumber;
     }
 }
