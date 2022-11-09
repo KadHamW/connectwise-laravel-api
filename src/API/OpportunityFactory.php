@@ -35,6 +35,26 @@ class OpportunityFactory
         $result = $conn->request('sales/opportunities/count');
         return json_decode($result)->count;
     }
+    public static function getOpportunities(){
+        $count = OpportunityFactory::getOpportunitiesCount();
+        $pages = (int)ceil($count / 100);
+        $tmp_opps = [];
+        for ($i=1; $i <= $pages; $i++) {
+            $conn = new Connection();
+            $result = $conn->request('sales/opportunities/?pagesize=100&page='.$i);
+            $tmp_opps = json_decode($result);
+            foreach($tmp_opps as $tmp_opp){
+                $tmp_opps[] = $tmp_opp;
+            }
+        }
+        return $tmp_opps;
+    }
+
+    public static function getOpportunity($id){
+        $conn = new Connection();
+        $result = $conn->request('sales/opportunities/'.$id);
+        return json_decode($result);
+    }
 
     public static function updateStatus(int $oppID, int $statusID){
         $conn = new Connection();
