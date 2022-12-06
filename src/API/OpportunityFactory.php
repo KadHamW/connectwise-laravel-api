@@ -56,6 +56,12 @@ class OpportunityFactory
         return json_decode($result);
     }
 
+    public static function getOpportunityForecast($id){
+        $conn = new Connection();
+        $result = $conn->request('sales/opportunities/'.$id.'/forecast');
+        return json_decode($result);
+    }
+
     public static function updateStatus(int $oppID, int $statusID){
         $conn = new Connection();
         $data = [
