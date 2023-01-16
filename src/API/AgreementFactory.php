@@ -56,6 +56,21 @@ class AgreementFactory
         $result = $conn->request('finance/agreements/'.$agreeID.'/additions/'.$addID,$data,'PATCH');
         return json_decode($result);
     }
+
+    public static function patchAgreementAddition(int $agreeID, int $addID, $a_data = []){
+        $conn = new Connection();
+        $data = [];
+        foreach($a_data as $path => $value){
+            $_updateValue = [
+                'op' => 'replace',
+                'path' => $path,
+                'value' => $value 
+            ];
+            $data[] = $_updateValue;
+        }
+        $result = $conn->request('finance/agreements/'.$agreeID.'/additions/'.$addID,$data,'PATCH');
+        return json_decode($result);
+    }
     public static function getAgreementAdditions($id){
         $conn = new Connection();
         $result = $conn->request('finance/agreements/'.$id.'/additions');
