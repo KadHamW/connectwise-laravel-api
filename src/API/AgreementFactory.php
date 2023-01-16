@@ -63,9 +63,9 @@ class AgreementFactory
         if(!empty($a_data)){
             foreach($a_data as $path => $value){
                 $_updateValue = [
-                    'op' => 'replace',
-                    'path' => $path,
-                    'value' => $value 
+                    'op' => "replace",
+                    'path' => "$path",
+                    'value' => "$value" 
                 ];
                 $data[] = $_updateValue;
             }
