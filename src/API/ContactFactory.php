@@ -19,8 +19,8 @@ class ContactFactory
         for ($i=1; $i <= $pages; $i++) {
             $conn = new Connection();
             $result = $conn->request('company/contacts/?pagesize=100&page='.$i);
-            $tmp_contacts = json_decode($result);
-            foreach($tmp_contacts as $tmp_contact){
+            $_tmp_contacts = json_decode($result);
+            foreach($_tmp_contacts as $tmp_contact){
                 $tmp_contacts[] = $tmp_contact;
             }
         }
